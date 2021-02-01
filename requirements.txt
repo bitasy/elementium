@@ -1,0 +1,4 @@
+arcade>=2.5.2
+tornado>=6.1
+numpy >= 1.19.5
+pymunk == 5.7.0
