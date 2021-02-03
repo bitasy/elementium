@@ -25,21 +25,23 @@ class WebClient:
 
         try:
             client = TCPClient()
-            stream = await client.connect('localhost', 88889)
+            stream = await client.connect(sys.argv[1], int(sys.argv[2]))
             cli_id = str(random.randint(0, 10))
             b_id = b'id:' + cli_id.encode() + b';'
             await stream.write(b_id)
             while True:
-
-                    data = await stream.read_until(b";", max_bytes=500)
-                    if data == b'id;':
-                        await stream.write(b_id)
-                        break
-                    elif data != b_id:
-                        print("Server didn't get id!")
-                        stream.close()
-                        client.close()
-                        await self.loop_send(retry_count + 1)
+                data = await stream.read_until(b";", max_bytes=500)
+                print(data)
+                if data == b'id;':
+                    await stream.write(b_id)
+                    break
+                elif data != b_id:
+                    print("Server didn't get id!")
+                    stream.close()
+                    client.close()
+                    await self.loop_send(retry_count + 1)
+                else:
+                    break
 
         except StreamClosedError:
             print('Stream closed while trying to send id')
@@ -50,7 +52,7 @@ class WebClient:
             await self.loop_send(retry_count + 1)
 
         while True:
-            timer = gen.sleep(1/self.rate)
+            timer = gen.sleep(1 / self.rate)
             try:
                 data = InputUpdate.get()
                 if data:
