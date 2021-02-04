@@ -1,24 +1,36 @@
 import json
-from dataclasses import dataclass, asdict
-from typing import List
+from dataclasses import dataclass
+from typing import Dict
 
+from client_utils import State
 from player_data import PlayerData
 
 
 @dataclass
 class UpdateData:
-    player_states_old: List[PlayerData]  # Null from the server, updated here
-    player_states_new: List[PlayerData]
+    player_states_old: Dict[int, PlayerData]  # todo use for lag compensation
+    player_states_new: Dict[int, PlayerData]
 
-    def to_json(self):
-        d = dict(
-            player_states=[asdict(p) for p in self.player_states_old],
-        )
-        return json.dumps(d)
-
-    def from_json(self, data):
-        self.player_states_old = self.player_states_new.copy()
-        self.player_states_new = []
+    @staticmethod
+    def from_json(data):
+        old = ServerUpdate.get().player_states_new.copy()
+        new = {}
         d = json.loads(data)
-        for i, p in enumerate(d['player_states']):
-            self.player_states_new[i] = PlayerData(**p)
+        for player_id, player_data in d[str(State.PLAYERS.value)].items():
+            new[player_id] = PlayerData(
+                x=player_data[str(State.X.value)],
+                y=player_data[str(State.Y.value)]
+            )
+        return UpdateData(old, new)
+
+
+class ServerUpdate:
+    latest: UpdateData = None  # Thread safe (i.e. atomic) reads from game thread, updated by IO thread
+
+    @classmethod
+    def put(cls, data: UpdateData):  # contains previous 2 server updates for interpolation
+        cls.latest = data
+
+    @classmethod
+    def get(cls) -> UpdateData:
+        return cls.latest

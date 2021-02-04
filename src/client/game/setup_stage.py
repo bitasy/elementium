@@ -2,8 +2,7 @@ import random
 
 import arcade
 
-from keyboard_controller import KeyboardController
-from player import Player
+from sprites.player import Player
 
 SPRITE_SCALING_PLAYER = 0.5
 SPRITE_SCALING_COIN = 0.2

@@ -18,3 +18,15 @@ class InputData:
 
     def asdict(self):
         return asdict(self)
+
+
+class InputUpdate:
+    latest: InputData = None    # Thread safe (i.e. atomic) reads from IO thread, updated by game thread
+
+    @classmethod
+    def put(cls, data: InputData):
+        cls.latest = data
+
+    @classmethod
+    def get(cls) -> InputData:
+        return cls.latest

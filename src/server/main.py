@@ -3,13 +3,15 @@ from typing import Dict
 
 from tornado.ioloop import IOLoop
 
-from game_state import GameLoop
-from webserver import GameServer
+from engine.game_state import GameState
+from web.webserver import GameServer
 
 if __name__ == '__main__':
-    player_lobby_map: Dict[int, int] = {}
-    server = GameServer(player_lobby_map)
+    lobby_map: Dict[int, GameState] = {}
+    # Temporary global lobby
+    global_lobby = GameState()
+    lobby_map[1] = global_lobby
+    server = GameServer(lobby_map)
     server.listen(int(sys.argv[1]))
-    game_loop = GameLoop(player_lobby_map)
-    game_loop.start()
+    IOLoop.current().run_sync(global_lobby.start)
     IOLoop.current().start()
