@@ -1,10 +1,10 @@
 import random
+import sys
 
 import arcade
 
 from sprites.player import Player
 
-SPRITE_SCALING_PLAYER = 0.5
 SPRITE_SCALING_COIN = 0.2
 COIN_COUNT = 50
 
@@ -30,8 +30,9 @@ def setup_stage(game):
 
     # Image from kenney.nl
     game.player_sprite = Player(
-        ":resources:images/animated_characters/female_person/femalePerson_idle.png",
-        SPRITE_SCALING_PLAYER,
+        sys.argv[3],
+        ":resources:images/animated_characters/female_adventurer/femaleAdventurer_idle.png",
+        Player.SPRITE_SCALING,
         game.window.width,
         game.window.height
     )

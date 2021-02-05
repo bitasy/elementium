@@ -28,6 +28,8 @@ class Player(Entity):
         }
 
     def new_input(self, new_input: Dict[Controls, int]):
+        self.change_x = 0
+        self.change_y = 0
         # Happens async whenever new input is received from client
         if new_input[Controls.MOVE_UP] and not new_input[Controls.MOVE_DOWN]:
             self.change_y = self.speed

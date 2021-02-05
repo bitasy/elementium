@@ -1,7 +1,6 @@
 import threading
 import arcade
 from game_view import GameView
-from client_utils import IOThreadFailed
 from webclient import WebClient
 
 SCREEN_WIDTH = 1920
