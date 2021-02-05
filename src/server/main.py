@@ -7,7 +7,7 @@ from engine.game_state import GameState
 from web.webserver import GameServer
 
 if __name__ == '__main__':
-    lobby_map: Dict[int, GameState] = {}
+    lobby_map = {}
     # Temporary global lobby
     global_lobby = GameState()
     lobby_map[1] = global_lobby

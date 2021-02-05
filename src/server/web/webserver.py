@@ -1,7 +1,7 @@
 from tornado.tcpserver import TCPServer
 from tornado.iostream import StreamClosedError
 
-from game_state import GameState
+from engine.game_state import GameState
 
 
 class GameServer(TCPServer):

@@ -2,7 +2,7 @@ from typing import Dict
 
 from tornado.iostream import IOStream
 
-from entities.entity import Entity
+from .entity import Entity
 from server_utils import State, Controls
 
 

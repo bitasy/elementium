@@ -3,12 +3,11 @@ import time
 from tornado import gen
 from tornado.iostream import StreamClosedError
 
-from entities.bullet import Bullet
-from entities.coin import Coin
-from entities.player import Player
-from game_stage import GameStage
+from .entities.bullet import Bullet
+from .entities.coin import Coin
+from .entities.player import Player
+from .game_stage import GameStage
 from server_utils import stringify, State
-from update_data import ServerUpdate, UpdateData
 
 
 class GameState:
@@ -18,9 +17,8 @@ class GameState:
         self.bullets: [Bullet] = []
         self.coins: [Coin] = []
         self.prev_time = 0
-        self.game_stage = GameStage(1920, 1080)
+        self.game_stage = GameStage(1600, 900)
         self.game_tick = 0
-        ServerUpdate.put(UpdateData({}, {}))
 
     async def start(self, rate: int = 32):  # Match client rate
         self.prev_time = time.time()

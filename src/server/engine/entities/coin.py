@@ -1,4 +1,4 @@
-from entities.entity import Entity
+from .entity import Entity
 
 
 class Coin(Entity):

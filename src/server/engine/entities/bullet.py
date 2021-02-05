@@ -1,5 +1,5 @@
-from entities.entity import Entity
-from player import Player
+from .entity import Entity
+from .player import Player
 
 
 class Bullet(Entity):
