@@ -11,6 +11,10 @@ class Player(arcade.Sprite):
         self.id = player_id
         self.screen_width = screen_width
         self.screen_height = screen_height
+        print(self.top)
+        print(self.bottom)
+        print(self.left)
+        print(self.right)
 
     def update(self):
         pass  # Todo: Interpolation & Lag Compensation

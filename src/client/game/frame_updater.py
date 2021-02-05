@@ -20,9 +20,6 @@ def on_update(game, delta_time, keyboard_controller):
     elif keyboard_controller.right_pressed() and not keyboard_controller.left_pressed():
         sprite.change_x = speed
 
-    print('x ' + str(sprite.change_x))
-    print('y ' + str(sprite.change_y))
-
     update = ServerUpdate.get()
     states = update.player_states_new.copy()
     players = game.player_list

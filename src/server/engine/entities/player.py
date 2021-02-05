@@ -12,8 +12,10 @@ class Player(Entity):
         self.id = player_id
         self.x = 50  # Todo: start players in different positions when a lobby / game state is started
         self.y = 70
-        self.width = 30  # todo these are guesses, figure out for real
-        self.height = 50  # todo these are guesses, figure out for real
+        self.left = -16
+        self.right = 16
+        self.top = 15.5
+        self.bottom = -32
         self.game_state = game_state
         self.stream = stream  # Todo: remove this logic from the player entity class
 
@@ -48,15 +50,15 @@ class Player(Entity):
         # Check for out-of-bounds
         stage_width = self.game_state.game_stage.width
         stage_height = self.game_state.game_stage.height
-        if self.x < 0:
-            self.x = 0
-        elif self.x + self.width > stage_width - 1:
-            self.x = stage_height - 1 - self.width
+        if self.x + self.left < 0:
+            self.x = -self.left
+        elif self.x + self.right > stage_width - 1:
+            self.x = stage_width - 1 - self.right
 
-        if self.y < 0:
-            self.y = 0  # todo confirm that y=0 is at bottom instead of top
-        elif self.y + self.height > stage_width - 1:
-            self.y = stage_height - 1 - self.height
+        if self.y + self.bottom < 0:
+            self.y = -self.bottom
+        elif self.y + self.top > stage_height - 1:
+            self.y = stage_height - 1 - self.top
 
     async def send_update(self, serialized_state):
         # Todo: remove this logic from the player entity class
