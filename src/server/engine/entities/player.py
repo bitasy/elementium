@@ -2,8 +2,9 @@ from typing import Dict
 
 from tornado.iostream import IOStream
 
+from .bullet import Bullet
 from .entity import Entity
-from server_utils import State, Controls
+from server_utils import State, Controls, LinkedList
 
 
 class Player(Entity):
@@ -20,6 +21,7 @@ class Player(Entity):
         self.stream = stream  # Todo: remove this logic from the player entity class
 
         # Update variables
+        self.history = LinkedList(max_len=Entity.MAX_HISTORY)
         self.change_x = 0
         self.change_y = 0
 
@@ -30,6 +32,8 @@ class Player(Entity):
         }
 
     def new_input(self, new_input: Dict[Controls, int]):
+        self.history.append(new_input)
+            
         self.change_x = 0
         self.change_y = 0
         # Happens async whenever new input is received from client
@@ -41,6 +45,12 @@ class Player(Entity):
             self.change_x = -self.speed
         elif new_input[Controls.MOVE_RIGHT] and not new_input[Controls.MOVE_LEFT]:
             self.change_x = self.speed
+
+        prev = self.history.tail.prev
+        if prev and prev.data[Controls.MOUSE_LEFT] and not new_input[Controls.MOUSE_LEFT]:
+            # Mouse release, launch new bullet
+            bullet = Bullet(self.game_state.gen_id(), self, new_input)
+            self.game_state.add_bullet(bullet)
 
     def update(self):
         # Happens when server is generating new game state to send to all clients
@@ -61,5 +71,4 @@ class Player(Entity):
             self.y = stage_height - 1 - self.top
 
     async def send_update(self, serialized_state):
-        # Todo: remove this logic from the player entity class
         await self.stream.write(bytes(serialized_state, encoding='utf-8') + b';')

@@ -19,6 +19,7 @@ class GameState:
         self.prev_time = 0
         self.game_stage = GameStage(1600, 900)
         self.game_tick = 0
+        self.next_id = 0
 
     async def start(self, rate: int = 32):  # Match client rate
         self.prev_time = time.time()
@@ -31,6 +32,8 @@ class GameState:
         try:
             for player in self.players:
                 player.update()  # Based on player-stored new input
+            for bullet in self.bullets:
+                bullet.update()
             state = self.serialize_state()
             for player in self.players:
                 await player.send_update(state)
@@ -45,11 +48,20 @@ class GameState:
         self.players.append(player)
         return player
 
+    def add_bullet(self, bullet):
+        self.bullets.append(bullet)
+
     def serialize_state(self) -> str:
         # Todo: track bullets and coins, implement their to_dict() functions
         # Todo: instead of sending entire game state, only send changes since last ack'd state for client
         # Todo: Lag compensation (biggie)
         return stringify({
             State.PLAYERS: {player.id: player.to_dict() for player in self.players},
+            State.BULLETS: {bullet.id: bullet.to_dict() for bullet in self.bullets},
             State.TICK: self.game_tick
         })
+
+    def gen_id(self):
+        # Creates unique ids for things
+        self.next_id += 1
+        return str(self.next_id)

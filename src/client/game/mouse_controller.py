@@ -20,12 +20,13 @@ class MouseController:
     def __init__(self):
         self.state = BUTTON_MAP.copy()
 
+
     def on_mouse_press(self, game, x, y, button):
         if button in bindings:
             self.state[bindings[button]] = True
         self.state[Controls.MOUSE_X] = x
         self.state[Controls.MOUSE_Y] = y
-
+        """
         # Create a bullet
         bullet = arcade.Sprite(":resources:images/space_shooter/laserBlue01.png", SPRITE_SCALING_LASER)
 
@@ -51,7 +52,6 @@ class MouseController:
         # Angle the bullet sprite so it doesn't look like it is flying
         # sideways.
         bullet.angle = math.degrees(angle)
-        print(f"Bullet angle: {bullet.angle:.2f}")
 
         # Taking into account the angle, calculate our change_x
         # and change_y. Velocity is how fast the bullet travels.
@@ -60,10 +60,11 @@ class MouseController:
 
         # Add the bullet to the appropriate lists
         game.bullet_list.append(bullet)
+        """
 
     def on_mouse_release(self, x, y, button):
         if button in bindings:
-            self.state[bindings[button]] = True
+            self.state[bindings[button]] = False
         self.state[Controls.MOUSE_X] = x
         self.state[Controls.MOUSE_Y] = y
 

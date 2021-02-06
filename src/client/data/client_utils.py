@@ -77,3 +77,5 @@ class State(int, Enum):
     PLAYERS = 4
     BULLETS = 5
     COINS = 6
+    ANGLE = 7
+    OWNER = 8

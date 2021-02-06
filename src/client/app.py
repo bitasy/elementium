@@ -7,6 +7,8 @@ SCREEN_WIDTH = 1600
 SCREEN_HEIGHT = 900
 SCREEN_TITLE = "Elementium (In Dev)"
 
+TICK_RATE = 32
+
 
 def game():
     window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
@@ -16,7 +18,7 @@ def game():
 
 
 if __name__ == '__main__':
-    net = WebClient()
+    net = WebClient(TICK_RATE)
     client_thread = threading.Thread(target=net.start_client)
     client_thread.start()
     game()

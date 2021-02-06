@@ -9,8 +9,8 @@ def on_draw(game):
 
     # Draw all the sprites.
     game.coin_list.draw()
-    game.bullet_list.draw()
     game.player_list.draw()
+    game.bullet_list.draw()
 
     # Put the text on the screen.
     output = f"Score: {game.score}"

@@ -29,16 +29,16 @@ def setup_stage(game):
     game.score = 0
 
     # Image from kenney.nl
-    game.player_sprite = Player(
+    game.player = Player(
         sys.argv[3],
         ":resources:images/animated_characters/female_adventurer/femaleAdventurer_idle.png",
         Player.SPRITE_SCALING,
         game.window.width,
         game.window.height
     )
-    game.player_sprite.center_x = 50
-    game.player_sprite.center_y = 70
-    game.player_list.append(game.player_sprite)
+    game.player.center_x = 50
+    game.player.center_y = 70
+    game.player_list.append(game.player)
 
     # Create the coins
     for i in range(COIN_COUNT):

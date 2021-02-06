@@ -57,7 +57,6 @@ class WebClient:
 
         while True:
             data = await read()
-            print(data)
             if data == b'id;':
                 await write(b_id)
                 break
@@ -67,7 +66,7 @@ class WebClient:
             else:
                 break
 
-        ServerUpdate.put(UpdateData({}, {}))
+        ServerUpdate.put(UpdateData({}, {}, {}))
 
         async def receive_update():
             while True:
