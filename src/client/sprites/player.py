@@ -17,6 +17,9 @@ class Player(arcade.Sprite):
     def update(self):
         pass  # Todo: Interpolation & Lag Compensation
 
+    def draw(self):
+        super().draw()
+
     @classmethod
     def update_all(cls, game, delta_time, keyboard_controller, update):
         sprite = game.player

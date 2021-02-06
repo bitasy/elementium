@@ -12,6 +12,14 @@ def on_draw(game):
     game.player_list.draw()
     game.bullet_list.draw()
 
-    # Put the text on the screen.
-    #output = f"Score: {game.score}"
-    #arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
+    for player in game.player_list:
+        arcade.draw_text(
+            player.id,
+            player.center_x,
+            player.top,
+            arcade.color.WHITE,
+            14,
+            align="center",
+            anchor_x="center",
+            anchor_y="bottom"
+        )
