@@ -35,7 +35,7 @@ class Bullet(arcade.Sprite):
             color = "Blue" if is_player else "Red"
             bullet = Bullet(
                 new_bullet_id,
-                ":resources:images/space_shooter/laser%s01.png" % color,
+                "resources/imgs/laser%s01.png" % color,
                 Bullet.SPRITE_SCALING,
                 game.window.width,
                 game.window.height

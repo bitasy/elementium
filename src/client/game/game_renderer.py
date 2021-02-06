@@ -13,5 +13,5 @@ def on_draw(game):
     game.bullet_list.draw()
 
     # Put the text on the screen.
-    output = f"Score: {game.score}"
-    arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
+    #output = f"Score: {game.score}"
+    #arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)

@@ -1,5 +1,8 @@
+import os
+import sys
 import threading
 import arcade
+import random
 from game_view import GameView
 from webclient import WebClient
 
@@ -18,6 +21,11 @@ def game():
 
 
 if __name__ == '__main__':
+    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+        sys.argv.append("13.57.249.171")
+        sys.argv.append("8889")
+        sys.argv.append(str(random.randint(0, 10000)))
+        os.chdir(sys._MEIPASS)
     net = WebClient(TICK_RATE)
     client_thread = threading.Thread(target=net.start_client)
     client_thread.start()

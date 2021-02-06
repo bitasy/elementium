@@ -49,7 +49,7 @@ class Player(arcade.Sprite):
             for new_player_id, new_player in player_states.items():
                 player = Player(
                     new_player_id,
-                    ":resources:images/animated_characters/female_person/femalePerson_idle.png",
+                    "resources/imgs/femalePerson_idle.png",
                     Player.SPRITE_SCALING,
                     game.window.width,
                     game.window.height
