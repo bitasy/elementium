@@ -1,9 +1,4 @@
-import json
-import math
-
-import arcade
-
-from keybindings import Controls, bindings
+from .keybindings import Controls, bindings
 
 SPRITE_SCALING_LASER = 0.8
 BULLET_SPEED = 5

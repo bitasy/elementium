@@ -3,7 +3,7 @@ import sys
 
 import arcade
 
-from sprites.player import Player
+from ..sprites.player import Player
 
 SPRITE_SCALING_COIN = 0.2
 COIN_COUNT = 50

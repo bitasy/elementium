@@ -6,9 +6,9 @@ from tornado.ioloop import IOLoop
 from tornado.iostream import StreamClosedError
 from tornado.tcpclient import TCPClient
 
-from client_utils import IOThreadFailed, stringify
-from input_data import InputUpdate
-from update_data import UpdateData, ServerUpdate
+from .client_utils import IOThreadFailed, stringify
+from .dataclasses.input_data import InputUpdate
+from .dataclasses.update_data import UpdateData, ServerUpdate
 
 
 class WebClient:

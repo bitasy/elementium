@@ -1,10 +1,6 @@
-import math
-
-import arcade
-
-from bullet import Bullet
-from player import Player
-from update_data import ServerUpdate
+from ..sprites.bullet import Bullet
+from ..sprites.player import Player
+from ..data.dataclasses.update_data import ServerUpdate
 
 
 def on_update(game, delta_time, keyboard_controller):

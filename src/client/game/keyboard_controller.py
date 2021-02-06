@@ -1,4 +1,4 @@
-from keybindings import Controls, bindings
+from .keybindings import Controls, bindings
 
 KEY_MAP = {
     Controls.MOVE_UP: False,

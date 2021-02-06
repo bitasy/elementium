@@ -1,7 +1,5 @@
 import arcade
 
-from update_data import ServerUpdate
-
 
 class Player(arcade.Sprite):
 

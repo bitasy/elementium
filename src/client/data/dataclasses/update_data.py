@@ -2,9 +2,9 @@ import json
 from dataclasses import dataclass
 from typing import Dict
 
-from bullet_data import BulletData
-from client_utils import State
-from player_data import PlayerData
+from .bullet_data import BulletData
+from ..client_utils import State
+from .player_data import PlayerData
 
 
 @dataclass

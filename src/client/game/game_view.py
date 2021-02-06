@@ -1,12 +1,12 @@
 import arcade
 
-from input_data import InputData, InputUpdate
-from keyboard_controller import KeyboardController
-from mouse_controller import MouseController
-from frame_updater import on_update
-from game_renderer import on_draw
-from setup_stage import setup_stage
-from client_utils import IOThreadFailed
+from ..data.dataclasses.input_data import InputData, InputUpdate
+from .keyboard_controller import KeyboardController
+from .mouse_controller import MouseController
+from .frame_updater import on_update
+from .game_renderer import on_draw
+from .setup_stage import setup_stage
+from ..data.client_utils import IOThreadFailed
 
 
 class GameView(arcade.View):

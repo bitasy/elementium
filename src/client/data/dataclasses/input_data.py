@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field, asdict
 from typing import Dict
 
-from keybindings import Controls
-from keyboard_controller import KEY_MAP
-from mouse_controller import BUTTON_MAP
+from ...game.keybindings import Controls
+from ...game.keyboard_controller import KEY_MAP
+from ...game.mouse_controller import BUTTON_MAP
 
 
 @dataclass

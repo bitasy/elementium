@@ -3,8 +3,8 @@ import sys
 import threading
 import arcade
 import random
-from game_view import GameView
-from webclient import WebClient
+from .game.game_view import GameView
+from .data.webclient import WebClient
 
 SCREEN_WIDTH = 1600
 SCREEN_HEIGHT = 900
