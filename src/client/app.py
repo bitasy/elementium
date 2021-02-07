@@ -27,6 +27,6 @@ if __name__ == '__main__':
         sys.argv.append(str(random.randint(0, 10000)))
         os.chdir(sys._MEIPASS)
     net = WebClient(TICK_RATE)
-    client_thread = threading.Thread(target=net.start_client)
+    client_thread = threading.Thread(target=net.start_client, daemon=True)
     client_thread.start()
     game()
